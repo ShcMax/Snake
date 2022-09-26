@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface ITake
-{
-    int Score { get; set; }
+{   
+    int Score { get; set; }    
 }

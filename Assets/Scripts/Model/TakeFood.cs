@@ -6,8 +6,7 @@ internal sealed class TakeFood : ITake
 {
     public int Score { get; set; }
 
-
-    public TakeFood (int score)
+    public TakeFood(int score)
     {
         Score = score;
     }

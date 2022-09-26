@@ -1,37 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 
 internal sealed class Snake : MonoBehaviour
-{    
-    [SerializeField] Text _text;
-    [SerializeField] private int _score = 1;
-    private IScoreChange _scoreChange;        
+{
+    [SerializeField] Main _main;
 
-    public void Initialize(IScoreChange scoreChange)
+    [SerializeField] Text text;
+
+    private int _scoreCount;
+
+    private int _scoreFood = 1; 
+
+    private float _horizontal;
+    private float _speedRotate = 100;
+
+    private Food _food;    
+
+    void Start()
     {
-        _scoreChange = scoreChange;
-        _scoreChange.OnScoreChange += OnScoreChange;
-        OnScoreChange(_scoreChange.Take.Score);
+        
+    }        
+
+    public void SnakeMove()
+    {
+        transform.Translate(Vector3.forward * Time.deltaTime);
     }
 
-    private void OnScoreChange(int score)
+    public void SnakeRotate()
     {
-        _text.text = _scoreChange.Take.ToString();
+        _horizontal = Input.GetAxis("Horizontal");
+        transform.Rotate(Vector3.down * _horizontal * _speedRotate * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Food"))
-        {            
-            OnScoreChange(_score);
-            Debug.Log(_scoreChange.Take);
+        if(other.CompareTag("Food"))
+        {
+            Debug.Log("wwww");
+            _food.AddScores += AddScore;
+            _main.AddScore(_scoreCount);            
         }
     }
-    public void Move()
+    private void AddScore(int value)
     {
-       
-
+        _scoreCount += value;
     }
+    
+    
+    
 }
