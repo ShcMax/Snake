@@ -10,9 +10,7 @@ internal sealed class Snake : MonoBehaviour
 
     [SerializeField] Text text;
 
-    private int _scoreCount;
-
-    private int _scoreFood = 1; 
+    private int _scoreCount;   
 
     private float _horizontal;
     private float _speedRotate = 100;
@@ -32,14 +30,14 @@ internal sealed class Snake : MonoBehaviour
     public void SnakeRotate()
     {
         _horizontal = Input.GetAxis("Horizontal");
-        transform.Rotate(Vector3.down * _horizontal * _speedRotate * Time.deltaTime);
+        transform.Rotate(Vector3.up * _horizontal * _speedRotate * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Food"))
+        if(other.gameObject.CompareTag("Food"))
         {
-            Debug.Log("wwww");
+            Debug.Log("wwww");           
             _food.AddScores += AddScore;
             _main.AddScore(_scoreCount);            
         }

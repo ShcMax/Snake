@@ -5,7 +5,7 @@ using System;
 
 public interface IScoreCount
 {
-    ITake Take { get;}
+    ITake Take { get; set; }
 
     void TakeFood(int food);
 

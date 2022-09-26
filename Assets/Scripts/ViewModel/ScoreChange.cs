@@ -5,7 +5,7 @@ using System;
 
 public sealed class ScoreChange : IScoreCount
 {
-    public ITake Take { get; }
+    public ITake Take { get; set; }
 
     public event Action<int> OnTakeFood;
 

@@ -17,7 +17,7 @@ internal sealed class Main : MonoBehaviour
 
     private void Awake()
     {
-        _displayScore = new UIDisplayBonus(_text);
+        _displayScore = new UIDisplayBonus(_text);        
     } 
     
     void Update()
