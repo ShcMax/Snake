@@ -8,18 +8,16 @@ internal sealed class Snake : MonoBehaviour
 {
     [SerializeField] Main _main;
 
-    [SerializeField] Text text;
-
-    private int _scoreCount;   
+    [SerializeField] Text text;  
 
     private float _horizontal;
     private float _speedRotate = 100;
 
-    private Food _food;    
-
+    private Food _food;
+    
     void Start()
     {
-        
+        _food = new Food(1);
     }        
 
     public void SnakeMove()
@@ -34,19 +32,16 @@ internal sealed class Snake : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.CompareTag("Food"))
+    {        
+        if(other.CompareTag("Food"))
         {
-            Debug.Log("wwww");           
-            _food.AddScores += AddScore;
-            _main.AddScore(_scoreCount);            
+            AddScore(_food.ScoreCount);
+            text.text = _food.Score.ToString();                
         }
-    }
-    private void AddScore(int value)
+    }   
+    private void AddScore(int score)
     {
-        _scoreCount += value;
+        score = 1;
+        _food.Score += score;
     }
-    
-    
-    
 }

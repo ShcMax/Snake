@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public sealed class ScoreChange : IScoreCount
+public sealed class ScoreChange
 {
-    public ITake Take { get; set; }
+    private TakeFood Take { get; set; }
 
     public event Action<int> OnTakeFood;
 
 
-    public ScoreChange(ITake take)
+    private ScoreChange(TakeFood take)
     {
         Take = take;
     }
